@@ -1,9 +1,10 @@
 /*Name: TreeHash
 * Description: I couldn't find the functions I wanted in Array, Treemap, hash, or others, so I created my own.  
 * It is two Arrays joined together, that you can iterate through the keys or the values, 
-* Date: 12.5.17
+* Initial Release Date: 11.1.17
+* Current Release Date: 12.6.17
 * Author: Ben Wilk
-* Version: 1.0
+* Version: 1.0a
 * Notes: Initial creation, and upload.  Fixed the formatting for easier reading.  
 */
 package src.main.java.utility;
@@ -72,6 +73,12 @@ public class TreeHash{
 	public void setKey(int startingPosition, char[] userKeySet){
 		for(int i = 0; i < userKeySet.length; i++){
 			this.key[i + startingPosition] = "" + userKeySet[i];
+		}
+	}
+	
+	public void setKey(int startingPosition, String[] userStringSet){
+		for(int i = 0; i < userStringSet.length; i++){
+			this.key[i + startingPosition] = userStringSet[i];
 		}
 	}
 
@@ -194,11 +201,11 @@ public class TreeHash{
 				return this.key[i];
 			}
 		}
-    return 'N';
+    return "N";
 	}
 
 	public void getKeyAndValue(){
-		for(int i = 0; i < 26; i++){
+		for(int i = 0; i < this.key.length; i++){
 			System.out.println(this.key[i] + " -- " + this.value[i]);
 		}
 	}
@@ -219,9 +226,9 @@ public class TreeHash{
 		return this.value[position];
 	}
 
-	public String getValue(char userKey){
+	public String getValue(String userKey){
 		for(int i = 0; i < getKeySize(); i++){
-			if(userKey == this.key[i]){
+			if(userKey.contains(this.key[i])){
 				return this.value[i];
 			}
 		}
