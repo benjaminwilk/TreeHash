@@ -4,8 +4,8 @@
 * Initial Release Date: 11.1.17
 * Current Release Date: 12.6.17
 * Author: Ben Wilk
-* Version: 1.0a
-* Notes: Initial creation, and upload.  Fixed the formatting for easier reading.  
+* Version: 1.01a
+* Notes: Forgot to add the standardAlphaNumeric String array!
 */
 package src.main.java.utility;
 
@@ -17,6 +17,7 @@ public class TreeHash{
 	private int size;
 	private String[] key = new String[1];
 	private String[] value = new String[1];
+	private static final String[] standardAlphaNumeric = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 	// Key --> Value
 
 	public TreeHash(int dataSize){
@@ -35,14 +36,14 @@ public class TreeHash{
 	}
 
 	public void setKey(){
-		for(int i = 0; i < utility.getLettersAndNumbersLength(); i++){
-			this.key[i] = utility.getLettersAndNumbers(i);
+		for(int i = 0; i < standardAlphaNumeric.length; i++){
+			this.key[i] = standardAlphaNumeric[i];
 		}
 	}
 
 	public void setKey(int cipherLength){
 		for(int a = 0; a <= cipherLength - 1; a++){
-			this.key[a] = utility.getLettersAndNumbers(a);
+			this.key[a] = standardAlphaNumeric[a];
 		}
 	}
 
@@ -83,14 +84,14 @@ public class TreeHash{
 	}
 
 	public void setValue(){
-		for(int i = 0; i < utility.getLettersAndNumbersLength(); i++){
-			this.value[i] = utility.getLettersAndNumbers(i);
+		for(int i = 0; i < standardAlphaNumeric.length; i++){
+			this.value[i] = standardAlphaNumeric[i];
 		}
 	}
 	
 	public void setValue(int valueLength){
 		for(int a = 0; a <= valueLength - 1; a++){
-			this.key[a] = utility.getLettersAndNumbers(a);
+			this.key[a] = standardAlphaNumeric[a];
 		}
 	}
 	
