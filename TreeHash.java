@@ -18,6 +18,7 @@ public class TreeHash{
 	private String[] value = new String[1];
 	private static final String[] standardAlphaNumeric = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 	private static final int defaultSize = 36; // This is set to 37 for A-Z, then 0-9.
+	private static final String defaultReturnCharacter = " ";
 	// Key --> Value
 
 	public TreeHash(int dataSize){
@@ -210,7 +211,7 @@ public class TreeHash{
 				return this.key[i];
 			}
 		}
-    return " ";
+    return defaultReturnCharacter;
 	}
 	
 	public String getKeyFromValueSearch(char userValue){
@@ -223,9 +224,25 @@ public class TreeHash{
     return "";
 	}
 
+	public String getKeyAndValueOutput(int position){
+		return this.key[position] + " -- " + this.value[position];
+	}
+	
 	public void getKeyAndValueOutput(){
 		for(int i = 0; i < this.key.length; i++){
 			System.out.println(this.key[i] + " -- " + this.value[i]);
+		}
+	}
+	
+	public void getKeyAndValueFormattedOutput(){
+		int width = 0;
+		for(int i = 0; i < getHashSize(); i++){
+			width++;
+			System.out.print(getKeyFromPosition(i) + " -- " + getValueFromPosition(i) + " ");
+			if(width == 5){
+				System.out.print(" \n");
+				width = 0;
+			}
 		}
 	}
 
@@ -252,7 +269,7 @@ public class TreeHash{
 				return this.value[i];
 			}
 		}
-    return " ";
+    return defaultReturnCharacter;
 	}
 
 	
@@ -262,7 +279,7 @@ public class TreeHash{
 				return this.value[i];
 			}
 		}
-    return " ";
+    return defaultReturnCharacter;
 	}
 
 	public void removeAllKeys(){
