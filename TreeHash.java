@@ -4,10 +4,9 @@
 * Initial Release Date: 11.1.17
 * Current Release Date: 12.6.17
 * Author: Ben Wilk
-* Version: 1.01a
-* Notes: Forgot to add the standardAlphaNumeric String array!
+* Version: 1.1
+* Notes: Completed the change of chars to Strings.  Also added another function, setKeyAndValue, this sets key and value to the same, but you can change it afterwards.
 */
-package src.main.java.utility;
 
 import java.util.Arrays;
 
@@ -48,13 +47,13 @@ public class TreeHash{
 	}
 
 	public void setKey(int position, char userKey){
-		this.key[position] = userKey;
+		this.key[position] = "" + userKey;
 	}
 
 	public void setKey(char userKey, String userValue){
 		for(int i = 0; i < getKeySize(); i++){
 			if(userValue.contains(this.value[i]) ){
-				this.key[i] = userKey;
+				this.key[i] = "" + userKey;
 			}
 		}
 	}
@@ -122,13 +121,21 @@ public class TreeHash{
 	}
 
 	public void setValuefromKeyMatch(char userKey, String userValue){
+		String stringUserKey = "" + userKey;
 		for(int i = 0; i < getKeySize(); i++){
-			if(this.key[i] == userKey){
+			if(this.key[i].contains(stringUserKey) ){
 				this.value[i] = userValue;
 			}
 		}
 	}
 
+	public void setKeyAndValue(){
+		for(int i = 0; i < this.key.length; i++){
+			this.key[i] = standardAlphaNumeric[i];
+			this.value[i] = standardAlphaNumeric[i];
+		}
+	}
+	
 	public void setKeyAndValue(char[] userKey, String[] userValue){
 		for(int i = 0; i < userValue.length; i++){
 			this.key[i] = "" + userKey[i];
@@ -152,7 +159,7 @@ public class TreeHash{
 	}
 
 	public void rotateKey(){
-		char firstValue = this.key[0];
+		String firstValue = this.key[0];
 		for(int i = 0; i < this.key.length; i++){
 			if(i == this.key.length - 1){
 				this.key[i] = firstValue;
@@ -163,7 +170,7 @@ public class TreeHash{
 	}
 
 	public void rotateKeyBackwards(){
-		char lastValue = this.key[this.key.length -1];
+		String lastValue = this.key[this.key.length -1];
 		for(int i = this.key.length - 1; i >= 0; i--){
 			if(i == 0){
 				this.key[i] = lastValue;

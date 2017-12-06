@@ -14,65 +14,65 @@ Both Key and Value are defined as strings, so you can either use a single charac
 
 Constructor Summary
 +-----------------------------------------------------------------------------------+
-|Constructor and Description														|
+|Constructor and Description                                                        |
 +-----------------------------------------------------------------------------------+
-|TreeHash()																			|
-|Initializes a newly created TreeHash object, defaults to 36 keys and values.  All	|
-|data points are empty.																|
+|TreeHash()                                                                         |
+|Initializes a newly created TreeHash object, defaults to 36 keys and values.  All  |
+|data points are empty.                                                             |
 |-----------------------------------------------------------------------------------|
-|TreeHash(int value)																|
-|Constructs a new TreeHash ojbect with the amount of keys and values set to the 	|
-|value defined. 																	|
+|TreeHash(int value)                                                                |
+|Constructs a new TreeHash ojbect with the amount of keys and values set to the     |
+|value defined.                                                                     |
 +-----------------------------------------------------------------------------------+
 
 Method Summary
 +-------------------------------+---------------------------------------------------+
-|Modifier and Type				|Method and Description								|
+|Modifier and Type              |Method and Description                             |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey()											|
-|								|Sets the keys, starting from 0 with the standard	|
-|								|alphabet and 0-9.									|
+|void                           |setKey()                                           |
+|                               |Sets the keys, starting from 0 with the standard   |
+|                               |alphabet and 0-9.                                  |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(int TopValue)								|
-|								|Sets the keys, starting from 0 with the standard	|
-|								|alphabet, but will only go as far as the TopValue  |
-|								|is defined.										|
+|void                           |setKey(int TopValue)                               |
+|                               |Sets the keys, starting from 0 with the standard   |
+|                               |alphabet, but will only go as far as the TopValue  |
+|                               |is defined.                                        |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(int index, char c)							|
-|								|Sets the key at the defined index with the passed  |
-|								|character.  Note: this character is converted in to|
-|								|a String when placed.								|
+|void                           |setKey(int index, char c)                          |
+|                               |Sets the key at the defined index with the passed  |
+|                               |character.  Note: this character is converted in to|
+|                               |a String when placed.                              |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(char c, String StringValue)					|
-|								|Iterates through every Value, comparing the		|
-|								|String value to the TreeHash Values,				|
-|								|a match, it replaces the key with character c.		|
+|void                           |setKey(char c, String StringValue)                 |
+|                               |Iterates through every Value, comparing the        |
+|                               |String value to the TreeHash Values,               |
+|                               |a match, it replaces the key with character c.     |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(String[] setOfData)							|
-|								|Starts at zero, and iterates through the keys, 	|
-|								|placing the setOfData in the keys.					|
+|void                           |setKey(String[] setOfData)                         |
+|                               |Starts at zero, and iterates through the keys,     |
+|                               |placing the setOfData in the keys.                 |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(char[] setOfData)							|
-|								|Starts at zero, iterates through the keys, placing |
-|								|the setOfData in the keys. Converts to Strings 	|
-|								|while doing so.									|
+|void                           |setKey(char[] setOfData)                           |
+|                               |Starts at zero, iterates through the keys, placing |
+|                               |the setOfData in the keys. Converts to Strings     |
+|                               |while doing so.                                    |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(int startPoint, char[] setOfData)			|
-|								|Starts at the user defined startPoint, and iterates|
-|								|up from there. Make sure there are enough keys, and|
-|								|you don't break the TreeHash Key set. Also, this   |
-|								|converts the characters to Strings.				|
+|void                           |setKey(int startPoint, char[] setOfData)           |
+|                               |Starts at the user defined startPoint, and iterates|
+|                               |up from there. Make sure there are enough keys, and|
+|                               |you don't break the TreeHash Key set. Also, this   |
+|                               |converts the characters to Strings.                |
 +-------------------------------+---------------------------------------------------+
-|void							|setKey(int startPoint, String[] setOfStrings)		|
-|								|Starts at the user defined startPoint, and iterates|
-|								|up from there. Make sure there are enough keys, so	|
-|								|you don't break the TreeHash Key set.				|
+|void                           |setKey(int startPoint, String[] setOfStrings)      |
+|                               |Starts at the user defined startPoint, and iterates|
+|                               |up from there. Make sure there are enough keys, so |
+|                               |you don't break the TreeHash Key set.              |
 +-------------------------------+---------------------------------------------------+
-|void							|setValue()											|
-|								|Sets the values, starting at 0, with the standard	|
-|								|English alphanumeric characters.					|
+|void							|setValue())                                        |
+|								|Sets the values, starting at 0, with the standard  |
+|								|English alphanumeric characters.                   |
 +-------------------------------+---------------------------------------------------+
-|void							|setValue(int TopValue)								|
+|void							|setValue(int TopValue)                             |
 |								|Sets the keys, starting from 0 with the standard	|
 |								|alphabet, but will only go as far as the TopValue  |
 |								|is defined.										|
@@ -99,6 +99,11 @@ Method Summary
 |								|Iterates through the TreeHash of Keys, and compares|
 |								|c to the keys, once a match has been found, the 	|
 |								|corresponding value is replaced with stringValue.  |
++-------------------------------+---------------------------------------------------+
+|void                           |setKeyAndValue()                                   |
+|                               |Allows you to set both Key and Value to the        |
+|                               |standard alphanumeric values.  Once set, you can   |
+|                               |rotate the values, or replace them.                |
 +-------------------------------+---------------------------------------------------+
 |void							|setKeyAndValue(char[] userChar,String[] userString)|
 |								|Starts from 0, and sets both the keys and values	|
