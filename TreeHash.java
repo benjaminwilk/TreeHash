@@ -4,8 +4,8 @@
 * Initial Release Date: 11.1.17
 * Current Release Date: 12.6.17
 * Author: Ben Wilk
-* Version: 1.1
-* Notes: Completed the change of chars to Strings.  Also added another function, setKeyAndValue, this sets key and value to the same, but you can change it afterwards.
+* Version: 1.2
+* Notes: Added two functions that allow the input of characters, and they'll be automatically converted to strings, and placed to uppercase.  
 */
 
 import java.util.Arrays;
@@ -17,6 +17,7 @@ public class TreeHash{
 	private String[] key = new String[1];
 	private String[] value = new String[1];
 	private static final String[] standardAlphaNumeric = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+	private static final int defaultSize = 36; // This is set to 37 for A-Z, then 0-9.
 	// Key --> Value
 
 	public TreeHash(int dataSize){
@@ -25,7 +26,7 @@ public class TreeHash{
 	}
   
 	public TreeHash(){
-		this.size = 36;
+		this.size = this.defaultSize;
 		setNewArraySize();
 	}
 
@@ -199,20 +200,30 @@ public class TreeHash{
 		}
 	}
 
-	public String getKey(int position){
+	public String getKeyFromPosition(int position){
 		return this.key[position];
 	}
 
-	public String getKey(String userValue){
+	public String getKeyFromValueSearch(String userValue){
 		for(int i = 0; i < this.key.length; i++){
 			if(userValue.contains(this.value[i])){
 				return this.key[i];
 			}
 		}
-    return "N";
+    return " ";
+	}
+	
+	public String getKeyFromValueSearch(char userValue){
+		String userValueToString = "" + Character.toUpperCase(userValue);
+		for(int i = 0; i < this.key.length; i++){
+			if(userValueToString.contains(this.value[i])){
+				return this.key[i];
+			}
+		}
+    return "";
 	}
 
-	public void getKeyAndValue(){
+	public void getKeyAndValueOutput(){
 		for(int i = 0; i < this.key.length; i++){
 			System.out.println(this.key[i] + " -- " + this.value[i]);
 		}
@@ -230,17 +241,28 @@ public class TreeHash{
 		return this.key.length;
 	}
 
-	public String getValue(int position){
+	public String getValueFromPosition(int position){
 		return this.value[position];
 	}
 
-	public String getValue(String userKey){
+	public String getValueFromKeySearch(char userKey){
+		String userKeyToString = "" + Character.toUpperCase(userKey);
+		for(int i = 0; i < getKeySize(); i++){
+			if(userKeyToString.contains(this.key[i])){
+				return this.value[i];
+			}
+		}
+    return " ";
+	}
+
+	
+	public String getValueFromKeySearch(String userKey){
 		for(int i = 0; i < getKeySize(); i++){
 			if(userKey.contains(this.key[i])){
 				return this.value[i];
 			}
 		}
-    return "Not Found";
+    return " ";
 	}
 
 	public void removeAllKeys(){
