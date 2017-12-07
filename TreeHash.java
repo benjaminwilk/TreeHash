@@ -2,10 +2,10 @@
 * Description: I couldn't find the functions I wanted in Array, Treemap, hash, or others, so I created my own.  
 * It is two Arrays joined together, that you can iterate through the keys or the values, 
 * Initial Release Date: 11.1.17
-* Current Release Date: 12.6.17
+* Current Release Date: 12.7.17
 * Author: Ben Wilk
-* Version: 1.2
-* Notes: Added two functions that allow the input of characters, and they'll be automatically converted to strings, and placed to uppercase.  
+* Version: 1.3
+* Notes: A bunch of changes have been made.  added a boolean that controls case sensitivity, and the key to value finders now take case sensitivity into consideration.
 */
 
 import java.util.Arrays;
@@ -19,16 +19,25 @@ public class TreeHash{
 	private static final String[] standardAlphaNumeric = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
 	private static final int defaultSize = 36; // This is set to 37 for A-Z, then 0-9.
 	private static final String defaultReturnCharacter = " ";
+	private boolean caseSensitivity;
 	// Key --> Value
 
+	public TreeHash(int dataSize, boolean caseStatement){
+		this.size = dataSize;
+		setNewArraySize();
+		this.caseSensitivity = caseStatement;
+	}
+	
 	public TreeHash(int dataSize){
 		this.size = dataSize;
 		setNewArraySize();
+		this.caseSensitivity = false;
 	}
   
 	public TreeHash(){
 		this.size = this.defaultSize;
 		setNewArraySize();
+		this.caseSensitivity = false;
 	}
 
 	public void setNewArraySize(){
@@ -39,17 +48,27 @@ public class TreeHash{
 	public void setKey(){
 		for(int i = 0; i < standardAlphaNumeric.length; i++){
 			this.key[i] = standardAlphaNumeric[i];
+			if(i == this.size){
+				break;
+			}
 		}
 	}
 
 	public void setKey(int cipherLength){
 		for(int a = 0; a <= cipherLength - 1; a++){
 			this.key[a] = standardAlphaNumeric[a];
+			if(a == this.size){
+				break;
+			}
 		}
 	}
 
 	public void setKey(int position, char userKey){
 		this.key[position] = "" + userKey;
+	}
+	
+	public void setKey(int position, String userKey){
+		this.key[position] = userKey;
 	}
 
 	public void setKey(char userKey, String userValue){
@@ -207,7 +226,7 @@ public class TreeHash{
 
 	public String getKeyFromValueSearch(String userValue){
 		for(int i = 0; i < this.key.length; i++){
-			if(userValue.contains(this.value[i])){
+			if(userValue.equals(this.value[i])){
 				return this.key[i];
 			}
 		}
@@ -217,7 +236,7 @@ public class TreeHash{
 	public String getKeyFromValueSearch(char userValue){
 		String userValueToString = "" + Character.toUpperCase(userValue);
 		for(int i = 0; i < this.key.length; i++){
-			if(userValueToString.contains(this.value[i])){
+			if(userValueToString.equals(this.value[i])){
 				return this.key[i];
 			}
 		}
@@ -263,20 +282,35 @@ public class TreeHash{
 	}
 
 	public String getValueFromKeySearch(char userKey){
-		String userKeyToString = "" + Character.toUpperCase(userKey);
-		for(int i = 0; i < getKeySize(); i++){
-			if(userKeyToString.contains(this.key[i])){
-				return this.value[i];
+		if(caseSensitivity == false){
+			String userKeyToString = "" + Character.toUpperCase(userKey);
+			for(int i = 0; i < getKeySize(); i++){
+				if(userKeyToString.equals(this.key[i])){
+					return this.value[i];
+				}
+			}
+		} else {
+			for(int i = 0; i < getKeySize(); i++){
+				if(userKeyToString.equalsIgnoreCase(this.key[i])){
+					return this.value[i];
+				}
 			}
 		}
     return defaultReturnCharacter;
 	}
-
 	
 	public String getValueFromKeySearch(String userKey){
-		for(int i = 0; i < getKeySize(); i++){
-			if(userKey.contains(this.key[i])){
-				return this.value[i];
+		if(caseSensitivity == false){
+			for(int i = 0; i < getKeySize(); i++){
+				if(userKey.equalsIgnoreCase(this.key[i])){
+					return this.value[i];
+				}
+			}
+		}else{
+			for(int i = 0; i < getKeySize(); i++){
+				if(userKey.equals(this.key[i])){
+					return this.value[i];
+				}
 			}
 		}
     return defaultReturnCharacter;
@@ -294,10 +328,42 @@ public class TreeHash{
 		}
 	}
 	
+	public void encodeMessage(String PrivateMessage, boolean rotateWithKeys){
+		if(rotateWithKeys){			
+			for(int i = 0; i < PrivateMessage.length(); i++){
+				System.out.print(getValueFromKeySearch(PrivateMessage.charAt(i)));
+				rotateValue();
+			}
+		} else{
+			System.err.println("\n\nUse encodeMessage() function without the Boolean call.\n\n");
+		}
+	}
+	
+	public void encodeMessage(String PrivateMessage){
+		for(int i = 0; i < PrivateMessage.length(); i++){
+			System.out.print(getValueFromKeySearch(PrivateMessage.charAt(i)));
+		}
+	}
+	
+	public void decodeMessage(String PrivateMessage, boolean rotateWithKeys){
+		if(rotateWithKeys){			
+			for(int i = 0; i < PrivateMessage.length(); i++){
+				System.out.print(getKeyFromValueSearch(PrivateMessage.charAt(i)));
+				rotateKeyBackwards();
+			}
+		} else{
+			System.err.println("\n\nUse decodeMessage() function without the Boolean call.\n\n");
+		}
+	}
+	
+	public void decodeMessage(String PrivateMessage){
+		for(int i = 0; i < PrivateMessage.length(); i++){
+			System.out.print(getKeyFromValueSearch(PrivateMessage.charAt(i)));
+		}
+	}
+		
 	public void destroyKeysAndValues(){
-		//for(int i = 0; i < this.key.length; i++){
 			this.key = null;
 			this.value = null;
-		//}
 	}
 }
