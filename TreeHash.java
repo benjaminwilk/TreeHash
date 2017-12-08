@@ -2,10 +2,10 @@
 * Description: I couldn't find the functions I wanted in Array, Treemap, hash, or others, so I created my own.  
 * It is two Arrays joined together, that you can iterate through the keys or the values, 
 * Initial Release Date: 11.1.17
-* Current Release Date: 12.7.17
+* Current Release Date: 12.8.17
 * Author: Ben Wilk
-* Version: 1.3
-* Notes: A bunch of changes have been made.  added a boolean that controls case sensitivity, and the key to value finders now take case sensitivity into consideration.
+* Version: 1.31
+* Notes: Additional defaultReturnCharacter Calls and No Nulls!
 */
 
 import java.util.Arrays;
@@ -240,7 +240,7 @@ public class TreeHash{
 				return this.key[i];
 			}
 		}
-    return "";
+    return defaultReturnCharacter;
 	}
 
 	public String getKeyAndValueOutput(int position){
@@ -257,9 +257,13 @@ public class TreeHash{
 		int width = 0;
 		for(int i = 0; i < getHashSize(); i++){
 			width++;
-			System.out.print(getKeyFromPosition(i) + " -- " + getValueFromPosition(i) + " ");
+			if(getKeyFromPosition(i) == null || getValueFromPosition(i) == null){
+				; // This is blank so you don't see null lines.
+			} else{
+				System.out.print("| " + getKeyFromPosition(i) + " -- " + getValueFromPosition(i) + " ");
+			}
 			if(width == 5){
-				System.out.print(" \n");
+				System.out.print("| \n");
 				width = 0;
 			}
 		}
@@ -287,9 +291,10 @@ public class TreeHash{
 			for(int i = 0; i < getKeySize(); i++){
 				if(userKeyToString.equals(this.key[i])){
 					return this.value[i];
-				}
+				} 
 			}
 		} else {
+			String userKeyToString = "" + Character.toString(userKey);
 			for(int i = 0; i < getKeySize(); i++){
 				if(userKeyToString.equalsIgnoreCase(this.key[i])){
 					return this.value[i];
