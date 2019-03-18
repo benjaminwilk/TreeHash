@@ -11,170 +11,115 @@ The TreeHash class includes methods of changing a specific data point, or removi
 
 Both Key and Value are defined as strings, so you can either use a single character, or a line of characters.
 
-
 Constructor Summary
-+-----------------------------------------------------------------------------------+
-|Constructor and Description                                                        |
-+-----------------------------------------------------------------------------------+
-|TreeHash()                                                                         |
-|Initializes a newly created TreeHash object, defaults to 36 keys and values.  All  |
-|data points are empty.                                                             |
-|-----------------------------------------------------------------------------------|
-|TreeHash(int value)                                                                |
-|Constructs a new TreeHash ojbect with the amount of keys and values set to the     |
-|value defined.                                                                     |
-+-----------------------------------------------------------------------------------+
++-----------------------------------------------------+
+|Constructor and Description                          |
++-----------------------------------------------------+
+|TreeHash(int dataSize, boolean userCase)             |
+|                                                     |
+|                                                     |
++-----------------------------------------------------+
+|TreeHash(int dataSize)                               |
+|                                                     |
+|                                                     |
++-----------------------------------------------------+
+|TreeHash(){ // Default constructor                   |
+|                                                     |
+|                                                     |
++-----------------------------------------------------+
+ 
+ 
+ Method Summary
++--------------------+--------------------------------------------------------------------+
+|Modifier and Type   |Method and Description                                              |
++--------------------+--------------------------------------------------------------------+
+|void                |SetKey(Object[] KeySet)                                             |
+|                    |Sets the key values to your object array.                           |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |SetValue(Object[] ValueSet)                                         |
+|                    |Sets the value set to your object array.                            |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |SetDefaultKeyAndValue()                                             |
+|                    |Sets the keys and values to default values.                         |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |SetKeyAndValue(Object[] userKey, Object[] userValue)                |
+|                    |Sets the key and value groups to user defined Keys and values.      |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|Object              |GetValueFromInteger(int passedInteger)                              |
+|                    |This is a renamed version of "return value"; user puts in an        |
+|                    | integer, and it returns the value from that location.              |
++--------------------+--------------------------------------------------------------------+
+|Object              |GetKeyFromInteger(int passedInteger)                                |
+|                    | This is a renamed version of "return key"; user puts in an         |
+|                    | integer, and it returns the key from that location.                |
++--------------------+--------------------------------------------------------------------+
+|Object              |GetValueFromKeySearch(Object searchValue)                           |
+|                    |User puts in a search value, it searches the keys, once it          |
+|                    |is true, it returns the corresponding value.                        |
++--------------------+--------------------------------------------------------------------+
+|Object              |GetKeyFromValueSearch(Object searchValue)                           |
+|                    |User puts in a search value, it searches the values, once it        |
+|                    |is true, it returns the corresponding key.                          |
++--------------------+--------------------------------------------------------------------+
+|void                |ReplaceValuefromKeyMatch(Object searchKey, Object replacementValue) |
+|                    |Replace the value, by matching with the key.                        |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |ReplaceKeyfromValueMatch(Object replacementKey, Object searchValue) |
+|                    |Replace the key, by matching with the value.                        |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |RotateKey(int rotationValue)                                        |
+|                    | Rotate the key values by your chosen integer count.                |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |RotateKey()                                                         |
+|                    |Rotate the key values by one.  Orig: A -> 1 New: A -> 2             |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |RotateKeyBackwards()                                                |
+|                    |Rotate the key backwards.                                           |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |RotateValue(int rotationValue)                                      |
+|                    |Rotate the Values by passed integer.                                |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |RotateValue()                                                       |
+|                    |Rotate the values by one.                                           |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|Object              |ReturnKey(int position)                                             |
+|                    |Returns the key value, from the position value.                     |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|Object              |ReturnValue(int position)                                           |
+|                    |Returns the corresponding value, based off the position value.      |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|String              |ReturnKeyAndValue(int position)                                     |
+|                    |Returns both key and value in a formatted fashion.                  |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |ReturnKeyAndValueRows()                                             |
+|                    |Returns all key and value sets.                                     |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |DestroyKeysAndValues()                                              |
+|                    |Destroys the treehash object; nullifies both keys and values.       |
+|                    |                                                                    |
++--------------------+--------------------------------------------------------------------+
+|void                |RemoveAllKeys()                                                     |
+|                    |Goes through and replaces all key values with your                  |
+|                    |defaultReturnCharacter -- Currently set to " ".                     |
++--------------------+--------------------------------------------------------------------+
+|void                |RemoveAllValues()                                                   |
+|                    |Goes through and replaces all values with your|                     |
+|                    |defaultReturnCharacter -- Currently set to " ".                     |
++--------------------+--------------------------------------------------------------------+
 
-Method Summary
-+-------------------------------+---------------------------------------------------+
-|Modifier and Type              |Method and Description                             |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey()                                           |
-|                               |Sets the keys, starting from 0 with the standard   |
-|                               |alphabet and 0-9.                                  |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(int TopValue)                               |
-|                               |Sets the keys, starting from 0 with the standard   |
-|                               |alphabet, but will only go as far as the TopValue  |
-|                               |is defined.                                        |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(int index, char c)                          |
-|                               |Sets the key at the defined index with the passed  |
-|                               |character.  Note: this character is converted in to|
-|                               |a String when placed.                              |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(char c, String StringValue)                 |
-|                               |Iterates through every Value, comparing the        |
-|                               |String value to the TreeHash Values,               |
-|                               |a match, it replaces the key with character c.     |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(String[] setOfData)                         |
-|                               |Starts at zero, and iterates through the keys,     |
-|                               |placing the setOfData in the keys.                 |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(char[] setOfData)                           |
-|                               |Starts at zero, iterates through the keys, placing |
-|                               |the setOfData in the keys. Converts to Strings     |
-|                               |while doing so.                                    |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(int startPoint, char[] setOfData)           |
-|                               |Starts at the user defined startPoint, and iterates|
-|                               |up from there. Make sure there are enough keys, and|
-|                               |you don't break the TreeHash Key set. Also, this   |
-|                               |converts the characters to Strings.                |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKey(int startPoint, String[] setOfStrings)      |
-|                               |Starts at the user defined startPoint, and iterates|
-|                               |up from there. Make sure there are enough keys, so |
-|                               |you don't break the TreeHash Key set.              |
-+-------------------------------+---------------------------------------------------+
-|void                           |setValue())                                        |
-|                               |Sets the values, starting at 0, with the standard  |
-|                               |English alphanumeric characters.                   |
-+-------------------------------+---------------------------------------------------+
-|void                           |setValue(int TopValue)                             |
-|                               |Sets the keys, starting from 0 with the standard   |
-|                               |alphabet, but will only go as far as the TopValue  |
-|                               |is defined.                                        |
-+-------------------------------+---------------------------------------------------+
-|void                           |setValue(int position, char c)						|
-|                               |Locates the position in value, and sets it to the	|
-|                               |defined char.  Char is converted to String when set|
-+-------------------------------+---------------------------------------------------+
-|void                           |setValue(char[] setOfData)                         |
-|                               |Starts from 0, and iterates through the TreeHash	  |
-|                               |setting the values to the setOfData.  Make sure 	  |
-|                               |the TreeHash can contain the amount of data points.|
-+-------------------------------+---------------------------------------------------+
-|void                           |setValue(String[] setOfData)                       |
-|                               |Starts from 0, and iterates through the TreeHash   |
-|                               |setting the values to the setOfData.  Make sure 	  |
-|                               |the TreeHash can contain the amount of data points.|
-+-------------------------------+---------------------------------------------------+
-|void                           |setValue(int position, String stringValue)         |
-|                               |Locates the position in the values, and sets it to	|
-|                               |the defined stringValue.                           |
-+-------------------------------+---------------------------------------------------+
-|void                           |setValueFromKeyMatch(char c, String stringValue)	  |
-|					                      |Iterates through the TreeHash of Keys, and compares|
-|                               |c to the keys, once a match has been found, the 	  |
-|                             	|corresponding value is replaced with stringValue.  |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKeyAndValue()                                   |
-|                               |Allows you to set both Key and Value to the        |
-|                               |standard alphanumeric values.  Once set, you can   |
-|                               |rotate the values, or replace them.                |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKeyAndValue(char[] userChar,String[] userString)|
-|                               |Starts from 0, and sets both the keys and values   |
-|                               |to the data in the arrays.                         |
-+-------------------------------+---------------------------------------------------+
-|void                           |setKeyAndValue(String[] userString,Stng[] usrStng) |
-|                               |Starts from 0, and sets both the keys and values   |
-|                               |to the data in the arrays.                         |
-+-------------------------------+---------------------------------------------------+
-|void                           |rotateKey(int Index)                               |
-|                               |Allows the user to rotate the keys from the Index. |
-|                               |Meaning: 1 -> A, 2 -> B becomes 1 -> B, 2 -> C		  |
-+-------------------------------+---------------------------------------------------+
-|void                           |rotateKey()                                        |
-|                               |Same as the example above, but only rotates one set|
-|                               |when called, rather than user-defined.             |
-+-------------------------------+---------------------------------------------------+
-|void                           |rotateKeyBackwards()                               |
-|                               |Allows the user to rotate the keys backwards.      |
-|                               |Example: 1 -> A, 2 -> B, becomes, 1 -> Z, 2 -> A	  |
-+-------------------------------+---------------------------------------------------+
-|void                           |rotateValue(int rotateBy)                          |
-|                               |Does the same thing as above, but rotates the value|
-|                               |as defined by the rotateBy integer.                |
-+-------------------------------+---------------------------------------------------+
-|String                         |getKey(int position)                               |
-|                               |Returns the key in TreeHash, as requested by the	  |
-|                               |passed integer position.                           |
-+-------------------------------+---------------------------------------------------+
-|String                         |getKey(String userString)                          |
-|                               |Iterates through the values, attempting to match   |
-|                               |the userString to a value, and when tue, will      |
-|                               |return the associated key.	If no match is found,	  |
-|                               |then the character "N" will be returned.           |
-+-------------------------------+---------------------------------------------------+
-|void                           |getKeyAndValue()                                   |
-|                               |Iterates through the entire key and value set, and |
-|                               |returns the keys and values in a clear and easily	|
-|                               |read method.                                       |
-+-------------------------------+---------------------------------------------------+
-|int                            |getKeySize()                                       |
-|                               |Returns the length of the Key portion of the       |
-|                               |TreeHash.                                          |
-+-------------------------------+---------------------------------------------------+
-|int                            |getValueSize()                                     |
-|                               |Returns the length of the Key portion of the       |
-|                               |TreeHash.                                          |
-+-------------------------------+---------------------------------------------------+
-|int                            |getHashSize()                                      |
-|                               |Returns the size of TreeHash.  Is really just 	  	|
-|                               |checking the size of the key length.               |
-+-------------------------------+---------------------------------------------------+
-|String                         |getValue(int position)                             |
-|                               |Returns the value, placed at the specified position|
-+-------------------------------+---------------------------------------------------+
-|String                         |getValue(String userKey)                           |
-|                               |Iterates through the keys, comparing userKey to 	  |
-|                               |the key values, and when a match is found, the   	|
-|                               |corresponding value will be returned.  If none is  |
-|                               |found, "Not Found" will be returned.               |
-+-------------------------------+---------------------------------------------------+
-|void                           |removeAllKeys()                                    |
-|                               |Iterates through every key, replacing them with  	|
-|                               |blank space.                                       |
-+-------------------------------+---------------------------------------------------+
-|void                           |removeAllValues()                                  |
-|                               |Same thing as removeAllKeys(), iterates through    |
-|                               |every value, and replaces it with blank space.     |
-+-------------------------------+---------------------------------------------------+
-|void                           |destroyKeysAndValues()                             |
-|                               |Replaces the key and Value TreeHash with null.		  |
-+-------------------------------+---------------------------------------------------+
-
-Last Updated: 12.6.17
+Last Updated: 3.18.19
