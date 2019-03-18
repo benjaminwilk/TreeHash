@@ -81,24 +81,24 @@ Method Summary
 |                               |Locates the position in value, and sets it to the	|
 |                               |defined char.  Char is converted to String when set|
 +-------------------------------+---------------------------------------------------+
-|void                           |setValue(char[] setOfData)							|
-|                               |Starts from 0, and iterates through the TreeHash	|
-|                               |setting the values to the setOfData.  Make sure 	|
+|void                           |setValue(char[] setOfData)                         |
+|                               |Starts from 0, and iterates through the TreeHash	  |
+|                               |setting the values to the setOfData.  Make sure 	  |
 |                               |the TreeHash can contain the amount of data points.|
 +-------------------------------+---------------------------------------------------+
-|void                           |setValue(String[] setOfData)						|
-|                               |Starts from 0, and iterates through the TreeHash	|
-|                               |setting the values to the setOfData.  Make sure 	|
+|void                           |setValue(String[] setOfData)                       |
+|                               |Starts from 0, and iterates through the TreeHash   |
+|                               |setting the values to the setOfData.  Make sure 	  |
 |                               |the TreeHash can contain the amount of data points.|
 +-------------------------------+---------------------------------------------------+
-|void                           |setValue(int position, String stringValue)			|
+|void                           |setValue(int position, String stringValue)         |
 |                               |Locates the position in the values, and sets it to	|
-|                               |the defined stringValue.							|
+|                               |the defined stringValue.                           |
 +-------------------------------+---------------------------------------------------+
-|void                           |setValueFromKeyMatch(char c, String stringValue)	|
-|								|Iterates through the TreeHash of Keys, and compares|
-|								|c to the keys, once a match has been found, the 	|
-|								|corresponding value is replaced with stringValue.  |
+|void                           |setValueFromKeyMatch(char c, String stringValue)	  |
+|					                      |Iterates through the TreeHash of Keys, and compares|
+|                               |c to the keys, once a match has been found, the 	  |
+|                             	|corresponding value is replaced with stringValue.  |
 +-------------------------------+---------------------------------------------------+
 |void                           |setKeyAndValue()                                   |
 |                               |Allows you to set both Key and Value to the        |
@@ -106,75 +106,75 @@ Method Summary
 |                               |rotate the values, or replace them.                |
 +-------------------------------+---------------------------------------------------+
 |void                           |setKeyAndValue(char[] userChar,String[] userString)|
-|								|Starts from 0, and sets both the keys and values	|
-|								|to the data in the arrays.							|
+|                               |Starts from 0, and sets both the keys and values   |
+|                               |to the data in the arrays.                         |
 +-------------------------------+---------------------------------------------------+
 |void                           |setKeyAndValue(String[] userString,Stng[] usrStng) |
-|								|Starts from 0, and sets both the keys and values	|
-|								|to the data in the arrays.							|
+|                               |Starts from 0, and sets both the keys and values   |
+|                               |to the data in the arrays.                         |
 +-------------------------------+---------------------------------------------------+
-|void                           |rotateKey(int Index)								|
-|								|Allows the user to rotate the keys from the Index. |
-|								|Meaning: 1 -> A, 2 -> B becomes 1 -> B, 2 -> C		|
+|void                           |rotateKey(int Index)                               |
+|                               |Allows the user to rotate the keys from the Index. |
+|                               |Meaning: 1 -> A, 2 -> B becomes 1 -> B, 2 -> C		  |
 +-------------------------------+---------------------------------------------------+
-|void                           |rotateKey()										|
-|								|Same as the example above, but only rotates one set|
-|								|when called, rather than user-defined.				|
+|void                           |rotateKey()                                        |
+|                               |Same as the example above, but only rotates one set|
+|                               |when called, rather than user-defined.             |
 +-------------------------------+---------------------------------------------------+
-|void                           |rotateKeyBackwards()								|
-|								|Allows the user to rotate the keys backwards.		|
-|								|Example: 1 -> A, 2 -> B, becomes, 1 -> Z, 2 -> A	|
+|void                           |rotateKeyBackwards()                               |
+|                               |Allows the user to rotate the keys backwards.      |
+|                               |Example: 1 -> A, 2 -> B, becomes, 1 -> Z, 2 -> A	  |
 +-------------------------------+---------------------------------------------------+
-|void                           |rotateValue(int rotateBy)							|
-|								|Does the same thing as above, but rotates the value|
-|								|as defined by the rotateBy integer.				|
+|void                           |rotateValue(int rotateBy)                          |
+|                               |Does the same thing as above, but rotates the value|
+|                               |as defined by the rotateBy integer.                |
 +-------------------------------+---------------------------------------------------+
-|String							|getKey(int position)								|
-|								|Returns the key in TreeHash, as requested by the	|
-|								|passed integer position.							|
+|String                         |getKey(int position)                               |
+|                               |Returns the key in TreeHash, as requested by the	  |
+|                               |passed integer position.                           |
 +-------------------------------+---------------------------------------------------+
-|String							|getKey(String userString)							|
-|								|Iterates through the values, attempting to match 	|
-|								|the userString to a value, and when tue, will		|
-|								|return the associated key.	If no match is found,	|
-|								|then the character "N" will be returned.			|
+|String                         |getKey(String userString)                          |
+|                               |Iterates through the values, attempting to match   |
+|                               |the userString to a value, and when tue, will      |
+|                               |return the associated key.	If no match is found,	  |
+|                               |then the character "N" will be returned.           |
 +-------------------------------+---------------------------------------------------+
-|void                           |getKeyAndValue()									|
-|								|Iterates through the entire key and value set, and |
-|								|returns the keys and values in a clear and easily	|
-|								|read method.										|
+|void                           |getKeyAndValue()                                   |
+|                               |Iterates through the entire key and value set, and |
+|                               |returns the keys and values in a clear and easily	|
+|                               |read method.                                       |
 +-------------------------------+---------------------------------------------------+
-|int							|getKeySize()										|
-|								|Returns the length of the Key portion of the 		|
-|								|TreeHash.											|
+|int                            |getKeySize()                                       |
+|                               |Returns the length of the Key portion of the       |
+|                               |TreeHash.                                          |
 +-------------------------------+---------------------------------------------------+
-|int							|getValueSize()										|
-|								|Returns the length of the Key portion of the 		|
-|								|TreeHash.											|
+|int                            |getValueSize()                                     |
+|                               |Returns the length of the Key portion of the       |
+|                               |TreeHash.                                          |
 +-------------------------------+---------------------------------------------------+
-|int 							|getHashSize()										|
-|								|Returns the size of TreeHash.  Is really just 		|
-|								|checking the size of the key length.				|
+|int                            |getHashSize()                                      |
+|                               |Returns the size of TreeHash.  Is really just 	  	|
+|                               |checking the size of the key length.               |
 +-------------------------------+---------------------------------------------------+
-|String                         |getValue(int position)								|
-|								|Returns the value, placed at the specified position|
+|String                         |getValue(int position)                             |
+|                               |Returns the value, placed at the specified position|
 +-------------------------------+---------------------------------------------------+
-|String                         |getValue(String userKey)							|
-|								|Iterates through the keys, comparing userKey to 	|
-|								|the key values, and when a match is found, the 	|
-|								|corresponding value will be returned.  If none is  |
-|								|found, "Not Found" will be returned.				|
+|String                         |getValue(String userKey)                           |
+|                               |Iterates through the keys, comparing userKey to 	  |
+|                               |the key values, and when a match is found, the   	|
+|                               |corresponding value will be returned.  If none is  |
+|                               |found, "Not Found" will be returned.               |
 +-------------------------------+---------------------------------------------------+
-|void                           |removeAllKeys()									|
-|								|Iterates through every key, replacing them with	|
-|								|blank space.										|
+|void                           |removeAllKeys()                                    |
+|                               |Iterates through every key, replacing them with  	|
+|                               |blank space.                                       |
 +-------------------------------+---------------------------------------------------+
-|void                           |removeAllValues()									|
-|								|Same thing as removeAllKeys(), iterates through 	|
-|								|every value, and replaces it with blank space.		|
+|void                           |removeAllValues()                                  |
+|                               |Same thing as removeAllKeys(), iterates through    |
+|                               |every value, and replaces it with blank space.     |
 +-------------------------------+---------------------------------------------------+
-|void                           |destroyKeysAndValues()								|
-|								|Replaces the key and Value TreeHash with null.		|
+|void                           |destroyKeysAndValues()                             |
+|                               |Replaces the key and Value TreeHash with null.		  |
 +-------------------------------+---------------------------------------------------+
 
 Last Updated: 12.6.17
