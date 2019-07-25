@@ -1,6 +1,6 @@
-Class TreeHash
+#Class TreeHash
 
-To call this library: 
+##How to use this library: 
 Insert in your folders, and call with import: TreeHash.java
 
 The TreeHash class is a hash class.  It allows the user to iterate through the keys, or values.  
@@ -11,7 +11,7 @@ The TreeHash class includes methods of changing a specific data point, or removi
 
 Both Key and Value are defined as strings, so you can either use a single character, or a line of characters.
 
-Constructor Summary
+###Constructor Summary
 +-----------------------------------------------------+
 |Constructor and Description                          |
 +-----------------------------------------------------+
@@ -29,7 +29,7 @@ Constructor Summary
 +-----------------------------------------------------+
  
  
- Method Summary
+###Method Summary
 +--------------------+--------------------------------------------------------------------+
 |Modifier and Type   |Method and Description                                              |
 +--------------------+--------------------------------------------------------------------+
